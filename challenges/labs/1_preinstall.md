@@ -243,7 +243,7 @@ ansible all -a 'cat /sys/kernel/mm/transparent_hugepage/defrag
 always madvise [never]
 
 172.32.1.178 | CHANGED | rc=0 >>
-[always] madvise never
+always madvise [never]
 
 172.32.1.158 | CHANGED | rc=0 >>
 always madvise [never]
