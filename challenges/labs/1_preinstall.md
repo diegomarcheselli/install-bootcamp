@@ -76,7 +76,7 @@ ansible all -a 'cat /proc/sys/vm/swappiness'
 ```
 run on every node
 ```
-sudo bash -c "echo 'vm.swappiness = 1' >> /etc/sysctl.conf"
+ sudo  sysctl -w vm.swappiness=1
 ```
 restart  nodes
 ```
