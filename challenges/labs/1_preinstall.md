@@ -203,11 +203,89 @@ nvme0n1     259:0    0  50G  0 disk
 ---
 
 # 4 Disabel Transparent Huge Support
-...sudo su
-...echo never > /sys/kernel/mm/transparent_hugepage/enabled
-...echo never > /sys/kernel/mm/transparent_hugepage/defrag
-...sudo vi /etc/rc.d/rc.local
+1. sudo su
+2. echo never > /sys/kernel/mm/transparent_hugepage/enabled
+3. echo never > /sys/kernel/mm/transparent_hugepage/defrag
+4. sudo vi /etc/rc.d/rc.local
 add the lines:
-...echo never > /sys/kernel/mm/transparent_hugepage/enabled
-...echo never > /sys/kernel/mm/transparent_hugepage/defrag
+5. echo never > /sys/kernel/mm/transparent_hugepage/enabled
+6. echo never > /sys/kernel/mm/transparent_hugepage/defrag
 
+
+```
+ansible all -a 'cat /sys/kernel/mm/transparent_hugepage/enabled'
+```
+
+```
+172.32.1.87 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.158 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.178 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.171 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.128 | CHANGED | rc=0 >>
+always madvise [never]
+```
+
+
+```
+ansible all -a 'cat /sys/kernel/mm/transparent_hugepage/defrag
+```
+
+```
+172.32.1.87 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.178 | CHANGED | rc=0 >>
+[always] madvise never
+
+172.32.1.158 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.171 | CHANGED | rc=0 >>
+always madvise [never]
+
+172.32.1.128 | CHANGED | rc=0 >>
+always madvise [never]
+
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
