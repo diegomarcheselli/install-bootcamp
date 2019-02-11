@@ -461,20 +461,420 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 1852  bytes 801967 (783.1 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-```
 ```
 
-```
-```
-```
-```
+---
+
+# 5 Show that forward and reverse host lookups are correctly resolve
 
 ```
-```
-
-```
+ansible all -a 'getent ahosts'
 ```
 
 ```
+172.32.1.171 | CHANGED | rc=0 >>
+127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
+172.32.1.178    ip-172-32-1-178 d01
+172.32.1.128    ip-172-32-1-128 d02
+172.32.1.171    ip-172-32-1-171 d03
+172.32.1.158    ip-172-32-1-158 d05
+172.32.1.87     ip-172-32-1-87 d04
+
+172.32.1.128 | CHANGED | rc=0 >>
+127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
+172.32.1.178    ip-172-32-1-178 d01
+172.32.1.128    ip-172-32-1-128 d02
+172.32.1.171    ip-172-32-1-171 d03
+172.32.1.158    ip-172-32-1-158 d05
+172.32.1.87     ip-172-32-1-87 d04
+
+172.32.1.87 | CHANGED | rc=0 >>
+127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6I
+172.32.1.178    ip-172-32-1-178 d01
+172.32.1.128    ip-172-32-1-128 d02
+172.32.1.171    ip-172-32-1-171 d03
+172.32.1.158    ip-172-32-1-158 d05
+172.32.1.87     ip-172-32-1-87 d04
+
+172.32.1.178 | CHANGED | rc=0 >>
+127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6
+172.32.1.178    ip-172-32-1-178 d01
+172.32.1.128    ip-172-32-1-128 d02
+172.32.1.171    ip-172-32-1-171 d03
+172.32.1.158    ip-172-32-1-158 d05
+172.32.1.87     ip-172-32-1-87 d04
+
+172.32.1.158 | CHANGED | rc=0 >>
+127.0.0.1       localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1       localhost localhost.localdomain localhost6 localhost6.localdomain6I
+172.32.1.178    ip-172-32-1-178 d01
+172.32.1.128    ip-172-32-1-128 d02
+172.32.1.171    ip-172-32-1-171 d03
+172.32.1.158    ip-172-32-1-158 d05
+172.32.1.87     ip-172-32-1-87 d04
 ```
+
+## ip-172-32-1-178
+``` 
+ansible all -a 'nslookup  172.32.1.178
+```
+
+```
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+```
+
+## ip-172-32-1-128
+```
+ansible all -a 'nslookup  172.32.1.178'
+```
+
+```
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+178.1.32.172.in-addr.arpa       name = ip-172-32-1-178.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+[ec2-user@ip-172-32-1-178 ~]$ ^C
+[ec2-user@ip-172-32-1-178 ~]$ ansible all -a 'nslookup  172.32.1.128'
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+```
+
+## ip-172-32-1-171
+```
+ansible all -a 'nslookup  172.32.1.128'
+```
+
+```
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+128.1.32.172.in-addr.arpa       name = ip-172-32-1-128.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+[ec2-user@ip-172-32-1-178 ~]$ ansible all -a 'nslookup  172.32.1.171'
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+171.1.32.172.in-addr.arpa       name = ip-172-32-1-171.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+171.1.32.172.in-addr.arpa       name = ip-172-32-1-171.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+171.1.32.172.in-addr.arpa       name = ip-172-32-1-171.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+171.1.32.172.in-addr.arpa       name = ip-172-32-1-171.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+171.1.32.172.in-addr.arpa       name = ip-172-32-1-171.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+```
+
+
+## ip-172-32-1-158
+```
+ansible all -a 'nslookup  172.32.1.158'
+```
+
+```
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+158.1.32.172.in-addr.arpa       name = ip-172-32-1-158.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+158.1.32.172.in-addr.arpa       name = ip-172-32-1-158.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+158.1.32.172.in-addr.arpa       name = ip-172-32-1-158.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+158.1.32.172.in-addr.arpa       name = ip-172-32-1-158.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+158.1.32.172.in-addr.arpa       name = ip-172-32-1-158.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+```
+
+
+## ip-172-32-1-87
+```
+ ansible all -a 'nslookup  172.32.1.187'
+```
+
+```
+172.32.1.178 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+187.1.32.172.in-addr.arpa       name = ip-172-32-1-187.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.128 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+187.1.32.172.in-addr.arpa       name = ip-172-32-1-187.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.87 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+187.1.32.172.in-addr.arpa       name = ip-172-32-1-187.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.171 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+187.1.32.172.in-addr.arpa       name = ip-172-32-1-187.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+172.32.1.158 | CHANGED | rc=0 >>
+Server:         169.254.169.253
+Address:        169.254.169.253#53
+
+Non-authoritative answer:
+187.1.32.172.in-addr.arpa       name = ip-172-32-1-187.eu-west-1.compute.internal.
+
+Authoritative answers can be found from:
+
+```
+
