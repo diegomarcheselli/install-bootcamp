@@ -49,7 +49,7 @@ Red Hat Enterprise Linux Server release 7.6 (Maipo)
 172.32.1.128 | CHANGED | rc=0 >>
 Red Hat Enterprise Linux Server release 7.6 (Maipo)
 ```
-
+---
 
 # 1 Swappines
 Original Value
@@ -100,7 +100,7 @@ ansible all -a 'cat /proc/sys/vm/swappiness'
 172.32.1.178 | CHANGED | rc=0 >>
 1
 ```
-
+---
 
 # 2 Volume Attributes
 
@@ -200,6 +200,14 @@ nvme0n1     259:0    0  50G  0 disk
 └─nvme0n1p2 259:2    0  50G  0 part /
 ```
 
+---
 
-
+# 4 Disabel Transparent Huge Support
+...sudo su
+...echo never > /sys/kernel/mm/transparent_hugepage/enabled
+...echo never > /sys/kernel/mm/transparent_hugepage/defrag
+...sudo vi /etc/rc.d/rc.local
+add the lines:
+...echo never > /sys/kernel/mm/transparent_hugepage/enabled
+...echo never > /sys/kernel/mm/transparent_hugepage/defrag
 
