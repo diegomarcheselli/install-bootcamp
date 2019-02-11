@@ -257,21 +257,210 @@ always madvise [never]
 ```
 
 ```
+ansible all -a 'cat /etc/rc.d/rc.local'
 ```
 
 ```
+172.32.1.87 | CHANGED | rc=0 >>
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+172.32.1.178 | CHANGED | rc=0 >>
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+172.32.1.128 | CHANGED | rc=0 >>
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+172.32.1.171 | CHANGED | rc=0 >>
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+
+172.32.1.158 | CHANGED | rc=0 >>
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
 ```
+---
+
+# 5 network interface configuration
+
+## ip-172-32-1-178
+```
+[ec2-user@ip-172-32-1-178 ~]$ ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.32.1.178  netmask 255.255.255.0  broadcast 172.32.1.255
+        inet6 fe80::38:98ff:fef4:ba32  prefixlen 64  scopeid 0x20<link>
+        ether 02:38:98:f4:ba:32  txqueuelen 1000  (Ethernet)
+        RX packets 11849  bytes 9633577 (9.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6180  bytes 3160274 (3.0 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 34681  bytes 44402385 (42.3 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 34681  bytes 44402385 (42.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 ```
+
+## ip-172-32-1-128 
 ```
+[root@ip-172-32-1-128 ec2-user]# ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.32.1.128  netmask 255.255.255.0  broadcast 172.32.1.255
+        inet6 fe80::e9:87ff:fee2:ca70  prefixlen 64  scopeid 0x20<link>
+        ether 02:e9:87:e2:ca:70  txqueuelen 1000  (Ethernet)
+        RX packets 4225  bytes 1125541 (1.0 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4339  bytes 515076 (503.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 797  bytes 667181 (651.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 797  bytes 667181 (651.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 ```
+
+## ip-172-32-1-171
 ```
-```
+[root@ip-172-32-1-171 ec2-user]# ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.32.1.171  netmask 255.255.255.0  broadcast 172.32.1.255
+        inet6 fe80::a4:64ff:fe3a:e180  prefixlen 64  scopeid 0x20<link>
+        ether 02:a4:64:3a:e1:80  txqueuelen 1000  (Ethernet)
+        RX packets 4189  bytes 964754 (942.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4287  bytes 534539 (522.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 753  bytes 607994 (593.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 753  bytes 607994 (593.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
+## ip-172-32-1-87
 ```
+  [root@ip-172-32-1-87 ec2-user]# ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.32.1.87  netmask 255.255.255.0  broadcast 172.32.1.255
+        inet6 fe80::f2:3ff:fe88:479a  prefixlen 64  scopeid 0x20<link>
+        ether 02:f2:03:88:47:9a  txqueuelen 1000  (Ethernet)
+        RX packets 4241  bytes 1103706 (1.0 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4335  bytes 533718 (521.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 762  bytes 660839 (645.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 762  bytes 660839 (645.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
 ```
+
+## ip-172-32-1-158
+```
+[root@ip-172-32-1-158 ec2-user]# ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.32.1.158  netmask 255.255.255.0  broadcast 172.32.1.255
+        inet6 fe80::a6:d4ff:fe2c:b88  prefixlen 64  scopeid 0x20<link>
+        ether 02:a6:d4:2c:0b:88  txqueuelen 1000  (Ethernet)
+        RX packets 5535  bytes 1311524 (1.2 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5626  bytes 673974 (658.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 1852  bytes 801967 (783.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1852  bytes 801967 (783.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 ```
 ```
