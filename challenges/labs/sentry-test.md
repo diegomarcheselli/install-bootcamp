@@ -23,7 +23,7 @@ INFO  : Completed executing command(queryId=hive_20190214094040_e4693c99-815e-4e
 INFO  : OK
 +-----------+--+
 | tab_name  |
-+-----------+--+
++-----------+--+  
 +-----------+--+
 No rows selected (1.759 seconds)
 0: jdbc:hive2://ip-172-32-1-137:10000/default>
