@@ -20,6 +20,9 @@ curl  -u  diegomarcheselli:cloudera 'ip-172-32-1-224:7180/api/version'
 v19
 ```
 
+
+
+
 ## Report the CM version (before upgrade)
 ```
   curl  -u  diegomarcheselli:clouderip-172-32-1-224:7180/api/v2/cm/version'                                  {
@@ -72,5 +75,21 @@ curl  -u  diegomarcheselli:cloudera 'ip-172-32-1-224:7180/api/v2/users'
     "roles" : [ "ROLE_CONFIGURATOR" ]
   } ]
 }
+```
+
+
+
+
+
+## Report the CM version (before upgrade)
+```
+```
+$  curl  -u  diegomarcheselli:cloudera 'ip-172-32-1-224:7180/api/v2/cm/version'
+{
+  "version" : "5.16.1",
+  "buildUser" : "jenkins",
+  "buildTimestamp" : "20181120-1809",
+  "gitHash" : "6a13b87a6fcdf4afad6d4474a68a9434b24d6c67",
+  "snapshot" : false
 ```
 
