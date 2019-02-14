@@ -3,6 +3,10 @@
 
 
 ```
+sudo cat /etc/krb5.conf
+  
+  
+  
 # Configuration snippets may be placed in this directory as well
 includedir /etc/krb5.conf.d/
 
@@ -31,9 +35,11 @@ includedir /etc/krb5.conf.d/
   admin_server = ip-172-32-1-224
  }
 
+
+
 [domain_realm]
- .example.com = ARDA.COM
-  example.com = ARDA.COM
+ .ip-172-32-1-224 = ARDA.COM
+  ip-172-32-1-224 = ARDA.COM
 
 ```
 
