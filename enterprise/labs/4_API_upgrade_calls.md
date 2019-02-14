@@ -83,7 +83,6 @@ curl  -u  diegomarcheselli:cloudera 'ip-172-32-1-224:7180/api/v2/users'
 
 ## Report the CM version (before upgrade)
 ```
-```
 $  curl  -u  diegomarcheselli:cloudera 'ip-172-32-1-224:7180/api/v2/cm/version'
 {
   "version" : "5.16.1",
