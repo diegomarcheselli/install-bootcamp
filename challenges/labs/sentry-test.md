@@ -38,6 +38,82 @@ No rows selected (1.759 seconds)
 [root@ip-172-32-1-224 ec2-user]# sudo groupadd inserters
 [root@ip-172-32-1-224 ec2-user]# sudo useradd -u 1100 -g selector george
 [root@ip-172-32-1-224 ec2-user]# sudo useradd -u 1200 -g inserters ferdinand
+
+[ec2-user@ip-172-32-1-224 ~]$ ansible all -a "sudo groupadd selector
+> "
+ [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+172.32.1.206 | CHANGED | rc=0 >>
+
+
+172.32.1.224 | FAILED | rc=9 >>
+groupadd: group 'selector' already existsnon-zero return code
+
+172.32.1.56 | CHANGED | rc=0 >>
+
+
+172.32.1.38 | CHANGED | rc=0 >>
+
+
+172.32.1.137 | CHANGED | rc=0 >>
+
+
+[ec2-user@ip-172-32-1-224 ~]$ ansible all -a "sudo groupadd inserters"
+ [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+172.32.1.224 | FAILED | rc=9 >>
+groupadd: group 'inserters' already existsnon-zero return code
+
+172.32.1.206 | CHANGED | rc=0 >>
+
+
+172.32.1.56 | CHANGED | rc=0 >>
+
+
+172.32.1.38 | CHANGED | rc=0 >>
+
+
+172.32.1.137 | CHANGED | rc=0 >>
+
+
+[ec2-user@ip-172-32-1-224 ~]$ ansible all -a "sudo useradd -u 1100 -g selector george"
+ [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+172.32.1.206 | CHANGED | rc=0 >>
+
+
+172.32.1.224 | FAILED | rc=9 >>
+useradd: user 'george' already existsnon-zero return code
+
+172.32.1.38 | CHANGED | rc=0 >>
+
+
+172.32.1.137 | CHANGED | rc=0 >>
+
+
+172.32.1.56 | CHANGED | rc=0 >>
+
+
+[ec2-user@ip-172-32-1-224 ~]$ ansible all -a "sudo useradd -u 1200 -g inserters ferdinand"
+ [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+172.32.1.206 | CHANGED | rc=0 >>
+
+
+172.32.1.137 | CHANGED | rc=0 >>
+
+
+172.32.1.224 | FAILED | rc=9 >>
+useradd: user 'ferdinand' already existsnon-zero return code
+
+172.32.1.56 | CHANGED | rc=0 >>
+
+
+172.32.1.38 | CHANGED | rc=0 >>
+
+
+
+
 [root@ip-172-32-1-224 ec2-user]# kadmin.local: add_principal george
 bash: kadmin.local:: command not found
 [root@ip-172-32-1-224 ec2-user]# kadmin.local
@@ -146,6 +222,74 @@ INFO  : Completed executing command(queryId=hive_20190214105151_3e1ee0f8-f89a-4d
 INFO  : OK
 No rows affected (0.069 seconds)
 ```
+
+## kinit as george, then login to beeline
+
+
+```
+[ec2-user@ip-172-32-1-137 ~]$ kinit george
+Password for george@ARDA.COM:
+[ec2-user@ip-172-32-1-137 ~]$ beeline
+Beeline version 1.1.0-cdh5.15.2 by Apache Hive
+beeline>  !connect jdbc:hive2://ip-172-32-1-137:10000/default;principal=hive/ip-172-32-1-137@ARDA.COM;
+scan complete in 2ms
+Connecting to jdbc:hive2://ip-172-32-1-137:10000/default;principal=hive/ip-172-32-1-137@ARDA.COM;
+Connected to: Apache Hive (version 1.1.0-cdh5.15.2)
+Driver: Hive JDBC (version 1.1.0-cdh5.15.2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://ip-172-32-1-137:10000/default> show tables;
+INFO  : Compiling command(queryId=hive_20190214121616_86513584-ddb3-4134-8f9a-3a2521893358): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20190214121616_86513584-ddb3-4134-8f9a-3a2521893358); Time taken: 0.057 seconds
+INFO  : Executing command(queryId=hive_20190214121616_86513584-ddb3-4134-8f9a-3a2521893358): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20190214121616_86513584-ddb3-4134-8f9a-3a2521893358); Time taken: 0.088 seconds
+INFO  : OK
++------------+--+
+|  tab_name  |
++------------+--+
+| employee   |
+| sample_07  |
++------------+--+
+2 rows selected (0.211 seconds)
+0: jdbc:hive2://ip-172-32-1-137:10000/default>
+
+```
+
+
+## kinit as erdonand, then login to beeline
+
+
+```[ec2-user@ip-172-32-1-137 ~]$ kinit ferdinand
+Password for ferdinand@ARDA.COM:
+[ec2-user@ip-172-32-1-137 ~]$ beeline
+Beeline version 1.1.0-cdh5.15.2 by Apache Hive
+beeline>  !connect jdbc:hive2://ip-172-32-1-137:10000/default;principal=hive/ip-172-32-1-137@ARDA.COM;
+scan complete in 1ms
+Connecting to jdbc:hive2://ip-172-32-1-137:10000/default;principal=hive/ip-172-32-1-137@ARDA.COM;
+Connected to: Apache Hive (version 1.1.0-cdh5.15.2)
+Driver: Hive JDBC (version 1.1.0-cdh5.15.2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://ip-172-32-1-137:10000/default> show tables;
+INFO  : Compiling command(queryId=hive_20190214115656_5b60611c-b675-435b-aabb-d1182984ae0c): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20190214115656_5b60611c-b675-435b-aabb-d1182984ae0c); Time taken: 0.057 seconds
+INFO  : Executing command(queryId=hive_20190214115656_5b60611c-b675-435b-aabb-d1182984ae0c): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20190214115656_5b60611c-b675-435b-aabb-d1182984ae0c); Time taken: 0.101 seconds
+INFO  : OK
++------------+--+
+|  tab_name  |
++------------+--+
+| sample_07  |
++------------+--+
+1 row selected (0.229 seconds)
+
+```
+
+
 
 
 
