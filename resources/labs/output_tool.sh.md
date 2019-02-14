@@ -353,9 +353,10 @@ mapreduce.job.reduces =  8
 
 TERAGEN
 
-real    0m2.263s
-user    0m3.262s
-sys     0m0.162s
+real    0m36.722s
+user    0m4.593s
+sys     0m0.250s
+
 
 TERASORT
 
