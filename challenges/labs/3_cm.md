@@ -249,4 +249,25 @@
 }
 
 ```
+##rocky 
+
+```
+
+[rocky@ip-172-32-1-249 ~]$ hdfs dfs -ls
+Found 1 items
+-rw-r--r--   3 rocky rocky          0 2019-02-15 11:45 test.txt
+
+```
+ ## denali
+ 
+ #
+ ```
+[denali@ip-172-32-1-249 ~]$ hdfs dfs -ls
+Found 1 items
+-rw-r--r--   3 denali denali          0 2019-02-15 11:47 test.txt
+[denali@ip-172-32-1-249 ~]$
+
+```
+ 
+
 
