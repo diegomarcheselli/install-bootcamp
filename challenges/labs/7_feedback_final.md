@@ -36,7 +36,7 @@ If you could add one subject to the class, what would it be?
 
 How much time do you think you will need to be able to install a cluster by yourself (no help, no mentoring)?
 ```
-Without pressure ore WEIRD behaviours od services I think in three of four hour would sufices 
+Without pressure ore WEIRD behaviours od services I think three of four hour would sufices 
 ```
 
 Thank you and safe travels.
