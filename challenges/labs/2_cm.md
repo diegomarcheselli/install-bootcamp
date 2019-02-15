@@ -1,0 +1,3 @@
+## INSTAL CLOUDERA MANAGER on ip-172-32-1-28 instead of ip-172-32-1-249
+
+
