@@ -208,49 +208,11 @@ ec2-34-249-104-53.eu-west-1.compute.amazonaws.com
 ### Volume capacity
 
 ```
-
-[ec2-user@ip-172-32-1-28 ~]$ ansible all -a 'df -h'
-172.32.1.236 | CHANGED | rc=0 >>
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p2   60G  1.8G   59G   3% /
-devtmpfs        7.6G     0  7.6G   0% /dev
-tmpfs           7.6G     0  7.6G   0% /dev/shm
-tmpfs           7.6G   17M  7.6G   1% /run
-tmpfs           7.6G     0  7.6G   0% /sys/fs/cgroup
-tmpfs           1.6G     0  1.6G   0% /run/user/1000
-
-172.32.1.249 | CHANGED | rc=0 >>
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p2   60G  1.8G   59G   3% /
-devtmpfs        7.6G     0  7.6G   0% /dev
-tmpfs           7.6G     0  7.6G   0% /dev/shm
-tmpfs           7.6G   17M  7.6G   1% /run
-tmpfs           7.6G     0  7.6G   0% /sys/fs/cgroup
-tmpfs           1.6G     0  1.6G   0% /run/user/1000
-
 172.32.1.28 | CHANGED | rc=0 >>
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/nvme0n1p2   60G  1.9G   59G   4% /
 devtmpfs        7.6G     0  7.6G   0% /dev
 tmpfs           7.6G  124K  7.6G   1% /dev/shm
-tmpfs           7.6G   17M  7.6G   1% /run
-tmpfs           7.6G     0  7.6G   0% /sys/fs/cgroup
-tmpfs           1.6G     0  1.6G   0% /run/user/1000
-
-172.32.1.214 | CHANGED | rc=0 >>
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p2   60G  1.8G   59G   3% /
-devtmpfs        7.6G     0  7.6G   0% /dev
-tmpfs           7.6G     0  7.6G   0% /dev/shm
-tmpfs           7.6G   17M  7.6G   1% /run
-tmpfs           7.6G     0  7.6G   0% /sys/fs/cgroup
-tmpfs           1.6G     0  1.6G   0% /run/user/1000
-
-172.32.1.203 | CHANGED | rc=0 >>
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p2   60G  1.8G   59G   3% /
-devtmpfs        7.6G     0  7.6G   0% /dev
-tmpfs           7.6G     0  7.6G   0% /dev/shm
 tmpfs           7.6G   17M  7.6G   1% /run
 tmpfs           7.6G     0  7.6G   0% /sys/fs/cgroup
 tmpfs           1.6G     0  1.6G   0% /run/user/1000
@@ -345,6 +307,46 @@ Could not contact any CDS load balancers: rhui2-cds01.eu-west-1.aws.ce.redhat.co
 
 ```
 
+### getent group alaska
 
+```
+ansible all -a 'getent group alaska'
+172.32.1.214 | CHANGED | rc=0 >>
+alaska:x:1001:
+
+172.32.1.28 | CHANGED | rc=0 >>
+alaska:x:1001:
+
+172.32.1.236 | CHANGED | rc=0 >>
+alaska:x:1001:
+
+172.32.1.249 | CHANGED | rc=0 >>
+alaska:x:1001:
+
+172.32.1.203 | CHANGED | rc=0 >>
+alaska:x:1001:
+```
+
+### getent passwd rocky
+
+
+```
+[ec2-user@ip-172-32-1-28 ~]$ ansible all -a 'getent passwd rocky'
+172.32.1.214 | CHANGED | rc=0 >>
+rocky:x:3800:1002::/home/rocky:/bin/bash
+
+172.32.1.28 | CHANGED | rc=0 >>
+rocky:x:3800:1002::/home/rocky:/bin/bash
+
+172.32.1.236 | CHANGED | rc=0 >>
+rocky:x:3800:1002::/home/rocky:/bin/bash
+
+172.32.1.249 | CHANGED | rc=0 >>
+rocky:x:3800:1002::/home/rocky:/bin/bash
+
+172.32.1.203 | CHANGED | rc=0 >>
+rocky:x:3800:1002::/home/rocky:/bin/bash
+
+```
 
 
