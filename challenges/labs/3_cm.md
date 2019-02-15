@@ -270,4 +270,67 @@ Found 1 items
 ```
  
 
+## Teragen
+not corret paramters 
+
+```
+[rocky@ip-172-32-1-249 ~]$ time hadoop jar  /opt/cloudera/parcels/CDH/lib/hadoop-0.20-mapreduce/hadoop-examples.jar teragen      -Ddfs.block.size=32000000      -Dmapred.map.tasks=4      1234000      /user/rocky/teragen/ok
+19/02/15 11:58:29 INFO client.RMProxy: Connecting to ResourceManager at ip-172-32-1-203/172.32.1.203:8032
+19/02/15 11:58:29 INFO terasort.TeraGen: Generating 1234000 using 4
+19/02/15 11:58:29 INFO mapreduce.JobSubmitter: number of splits:4
+19/02/15 11:58:29 INFO Configuration.deprecation: mapred.map.tasks is deprecated. Instead, use mapreduce.job.maps
+19/02/15 11:58:29 INFO Configuration.deprecation: dfs.block.size is deprecated. Instead, use dfs.blocksize
+19/02/15 11:58:29 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1550229133478_0007
+19/02/15 11:58:30 INFO impl.YarnClientImpl: Submitted application application_1550229133478_0007
+19/02/15 11:58:30 INFO mapreduce.Job: The url to track the job: http://ip-172-32-1-203:8088/proxy/application_1550229133478_0007/
+19/02/15 11:58:30 INFO mapreduce.Job: Running job: job_1550229133478_0007
+19/02/15 11:58:35 INFO mapreduce.Job: Job job_1550229133478_0007 running in uber mode : false
+19/02/15 11:58:35 INFO mapreduce.Job:  map 0% reduce 0%
+19/02/15 11:58:41 INFO mapreduce.Job:  map 50% reduce 0%
+19/02/15 11:58:43 INFO mapreduce.Job:  map 100% reduce 0%
+19/02/15 11:58:43 INFO mapreduce.Job: Job job_1550229133478_0007 completed successfully
+19/02/15 11:58:43 INFO mapreduce.Job: Counters: 31
+        File System Counters
+                FILE: Number of bytes read=0
+                FILE: Number of bytes written=596056
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=337
+                HDFS: Number of bytes written=123400000
+                HDFS: Number of read operations=16
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=8
+        Job Counters
+                Launched map tasks=4
+                Other local map tasks=4
+                Total time spent by all maps in occupied slots (ms)=16946
+                Total time spent by all reduces in occupied slots (ms)=0
+                Total time spent by all map tasks (ms)=16946
+                Total vcore-milliseconds taken by all map tasks=16946
+                Total megabyte-milliseconds taken by all map tasks=17352704
+        Map-Reduce Framework
+                Map input records=1234000
+                Map output records=1234000
+                Input split bytes=337
+                Spilled Records=0
+                Failed Shuffles=0
+                Merged Map outputs=0
+                GC time elapsed (ms)=249
+                CPU time spent (ms)=5640
+                Physical memory (bytes) snapshot=980594688
+                Virtual memory (bytes) snapshot=6321086464
+                Total committed heap usage (bytes)=1349517312
+        org.apache.hadoop.examples.terasort.TeraGen$Counters
+                CHECKSUM=2652127169120142
+        File Input Format Counters
+                Bytes Read=0
+        File Output Format Counters
+                Bytes Written=123400000
+
+real    0m16.180s
+user    0m4.227s
+sys     0m0.229s
+
+``` 
 
